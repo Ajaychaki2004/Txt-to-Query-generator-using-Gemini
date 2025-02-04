@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 load_dotenv()
-import sql
+from sql import main
 
 import streamlit as st
 import os
@@ -8,6 +8,7 @@ import sqlite3
 import google.generativeai as genai 
 
 genai.configure(api_key="AIzaSyCLDQgKnO55UQrnFsL2d79fxanIn_AL0WA")
+main()
 
 
 def get_gemini_response(question,prompt):
@@ -42,6 +43,7 @@ st.title("Text to SQL Query Generator")
 question = st.text_input("Enter your request:", "")
 
 if st.button("Generate SQL Query"):
+    
     if question:
         sql_query = get_gemini_response(question,prompt)
         print(sql_query)
